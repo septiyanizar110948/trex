@@ -89,7 +89,7 @@
                             <li class="scroll"><a href="{{ url('#explore') }}">explore</a></li>
                             <li class="scroll"><a href="{{ url('#reviews') }}">review</a></li>
                             <li class="scroll"><a href="{{ url('#blog') }}">blog</a></li>
-                            <li class="scroll"><a href="{{ url('#contact') }}">contact</a></li>
+                            <li class="scroll"><a href="{{ url('#contact') }}"> </a></li>
                         </ul><!--/.nav -->
                     </div><!-- /.navbar-collapse -->
                 </div><!--/.container-->
