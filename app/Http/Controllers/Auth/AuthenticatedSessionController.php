@@ -29,7 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+            ]))
+        {
+            if ($request->user()->role == 'client') {
+                return redirect('/');
+            }
+            return to_route('dashboard');
+        } else {
+            return to_route('login');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
+
     }
 
     /**

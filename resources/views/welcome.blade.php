@@ -89,8 +89,25 @@
                             <li class="scroll"><a href="{{ url('#explore') }}">explore</a></li>
                             <li class="scroll"><a href="{{ url('#reviews') }}">review</a></li>
                             <li class="scroll"><a href="{{ url('#blog') }}">blog</a></li>
-                            <li class="scroll"><a href="{{ url('#contact') }}"> </a></li>
-                        </ul><!--/.nav -->
+                            @auth
+                            @if (auth()->user()->role == 'client')
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}"> client</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}"> Dashboard</a>
+                            </li>
+                            @endif
+                                @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}"> Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}"> Register</a>
+                                </li>
+                            @endauth                        </ul><!--/.nav -->
                     </div><!-- /.navbar-collapse -->
                 </div><!--/.container-->
             </nav><!--/nav-->
