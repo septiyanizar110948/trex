@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Travelpack;
+use App\Models\TravelPack;
 use Illuminate\Http\Request;
 
-class TravelpackController extends Controller
+class TravelPackController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $travel = Travelpack::orderBy('id', 'asc')->get();
-        // $travel = Travelpack
-        return view('travel.index', compact('travel'));
+        $travels = TravelPack::orderBy('id', 'asc')->get();
+        return view('admin.travel.index', compact('travels'));
     }
 
     /**
@@ -22,7 +21,7 @@ class TravelpackController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.travel.create');
     }
 
     /**
@@ -30,7 +29,36 @@ class TravelpackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'             => ['required'],
+            'slug'              => ['required'],
+            'location'          => ['required'],
+            'about'             => ['required'],
+            'featured_event'    => ['required'],
+            'language'          => ['required'],
+            'foods'             => ['required'],
+            'departure_date'    => ['required'],
+            'duration'          => ['required'],
+            'type'              => ['required'],
+            'price'             => ['required'],
+        ]);
+
+        TravelPack::create([
+            'title'             => $request->title,
+            'slug'              => $request->slug,
+            'location'          => $request->location,
+            'about'             => $request->about,
+            'featured_event'    => $request->featured_event,
+            'language'          => $request->language,
+            'foods'             => $request->foods,
+            'departure_date'    => $request->departure_date,
+            'duration'          => $request->duration,
+            'type'              => $request->type,
+            'price'             => $request->price,
+        ]);
+
+        toast('Berhasil', 'success');
+        return to_route('travel.index')->with('success');
     }
 
     /**
@@ -38,7 +66,7 @@ class TravelpackController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.travel.show');
     }
 
     /**
@@ -46,22 +74,54 @@ class TravelpackController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.travel.edit');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, TravelPack $travel)
     {
-        //
+        $request->validate([
+            'title'             => ['required'],
+            'slug'              => ['required'],
+            'location'          => ['required'],
+            'about'             => ['required'],
+            'featured_event'    => ['required'],
+            'language'          => ['required'],
+            'foods'             => ['required'],
+            'departure_date'    => ['required'],
+            'duration'          => ['required'],
+            'type'              => ['required'],
+            'price'             => ['required'],
+        ]);
+
+        $travel->update([
+            'title'             => $request->title,
+            'slug'              => $request->slug,
+            'location'          => $request->location,
+            'about'             => $request->about,
+            'featured_event'    => $request->featured_event,
+            'language'          => $request->language,
+            'foods'             => $request->foods,
+            'departure_date'    => $request->departure_date ,
+            'duration'          => $request->duration,
+            'type'              => $request->type,
+            'price'             => $request->price,
+        ]);
+
+        toast('Berhasil', 'success');
+        return to_route('travel.index')->with('success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TravelPack $travel)
     {
-        //
+        $travel->delete();
+
+        toast('Berhasil', 'success');
+        return to_route('travel.index')->with('success');
     }
 }
