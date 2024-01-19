@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TravelpackController;
 
@@ -33,4 +34,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('user', UserController::class);
-Route::resource('travel', TravelpackController::class);
+Route::resource('travel', TravelPackController::class);
+Route::resource('gallery', GalleryController::class);

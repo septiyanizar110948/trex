@@ -12,8 +12,8 @@ class TravelPackController extends Controller
      */
     public function index()
     {
-        $travels = TravelPack::orderBy('id', 'asc')->get();
-        return view('admin.travel.index', compact('travels'));
+        $travel = TravelPack::orderBy('id', 'asc')->get();
+        return view('travel.index', compact('travel'));
     }
 
     /**
@@ -21,7 +21,7 @@ class TravelPackController extends Controller
      */
     public function create()
     {
-        return view('admin.travel.create');
+        return view('travel.create');
     }
 
     /**
@@ -57,7 +57,6 @@ class TravelPackController extends Controller
             'price'             => $request->price,
         ]);
 
-        toast('Berhasil', 'success');
         return to_route('travel.index')->with('success');
     }
 
@@ -66,7 +65,7 @@ class TravelPackController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.travel.show');
+        return view('travel.show');
     }
 
     /**
@@ -74,7 +73,7 @@ class TravelPackController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.travel.edit');
+        return view('travel.edit');
     }
 
     /**
@@ -110,7 +109,6 @@ class TravelPackController extends Controller
             'price'             => $request->price,
         ]);
 
-        toast('Berhasil', 'success');
         return to_route('travel.index')->with('success');
     }
 
@@ -121,7 +119,6 @@ class TravelPackController extends Controller
     {
         $travel->delete();
 
-        toast('Berhasil', 'success');
         return to_route('travel.index')->with('success');
     }
 }

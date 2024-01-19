@@ -21,13 +21,10 @@
                     <tr>
                         <td>No</td>
                         <td>Title</td>
-                        <td>Slug</td>
                         <td>Location</td>
                         <td>About</td>
-                        <td>featured_event</td>
-                        <td>language</td>
                         <td>foods</td>
-                        <td>departure_date</td>
+                        <td>departure date</td>
                         <td>duration</td>
                         <td>type</td>
                         <td>price</td>
@@ -39,11 +36,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->title }}</td>
-                            <td>{{ $row->slug }}</td>
                             <td>{{ $row->location }}</td>
                             <td>{{ $row->about }}</td>
-                            <td>{{ $row->featured_event }}</td>
-                            <td>{{ $row->language }}</td>
                             <td>{{ $row->foods }}</td>
                             <td>{{ $row->departure_date }}</td>
                             <td>{{ $row->duration }}</td>
